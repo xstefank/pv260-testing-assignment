@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AtLeastNOfFilterTest {
 
     private Filter<Integer> filterStubEqualOne = item -> item == 1;
+    private Filter<Integer> filterStubEqualTwo = item -> item == 2;
     private Filter<Integer> filterStubGreaterEqualOne = item -> item >= 1;
 
     @Test
@@ -54,17 +55,45 @@ public class AtLeastNOfFilterTest {
     }
 
     @Test
-    public void testPassesWithOneChildFilter() {
+    public void testPassesWithExactlyOneChildFilter() {
         AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne);
 
         assertThat(result.passes(Integer.valueOf(1))).isTrue();
     }
 
     @Test
-    public void testPassesWithNChildFilters() {
+    public void testPassesWithExactlyNChildFilters() {
         AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(2, filterStubEqualOne, filterStubGreaterEqualOne);
 
         assertThat(result.passes(Integer.valueOf(1))).isTrue();
+    }
+
+    @Test
+    public void testPassesWithLessNValidChildFilters() {
+        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne, filterStubGreaterEqualOne);
+
+        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+    }
+
+    @Test
+    public void testPassesWithLessNSomeInvalidFilters() {
+        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne, filterStubEqualTwo);
+
+        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+    }
+
+    @Test
+    public void testFailWhenNMinusOnePass() {
+        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(2, filterStubEqualOne, filterStubEqualTwo);
+
+        assertThat(result.passes(Integer.valueOf(1))).isFalse();
+    }
+
+    @Test
+    public void testFailWhenNoFilterPass() {
+        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualTwo, filterStubEqualTwo);
+
+        assertThat(result.passes(Integer.valueOf(3))).isFalse();
     }
 
 }
