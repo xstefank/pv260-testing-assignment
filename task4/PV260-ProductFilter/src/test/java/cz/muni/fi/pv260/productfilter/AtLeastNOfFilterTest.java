@@ -16,6 +16,7 @@ public class AtLeastNOfFilterTest {
     private Object testObject1;
     private Object testObject2;
 
+    //manual stubs example
     private Filter<Object> filterStubIsObject1 = item -> item == testObject1;
     private Filter<Object> filterStubIsObject2 = item -> item == testObject2;
     private Filter<Object> filterStubEqualObject1 = item -> item.equals(testObject1);
