@@ -5,14 +5,17 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static com.googlecode.catchexception.CatchException.caughtException;
 import static com.googlecode.catchexception.CatchException.verifyException;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,32 +29,26 @@ public class ControllerTest {
     private Output outMock;
     private Logger loggerMock;
 
-    private Product testProduct1;
-    private Product testProduct2;
-    private Product testProduct3;
+    private List<Product> testProducts;
 
     private Filter<Product> blackColorFilterStub = item -> item.getColor().equals(Color.BLACK);
 
+    private Controller controller;
+
     @Before
     public void before() throws ObtainFailedException {
-        testProduct1 = new Product(1, "testProduct1", Color.BLACK, BigDecimal.ONE);
-        testProduct2 = new Product(2, "testProduct2", Color.BLACK, BigDecimal.TEN);
-        testProduct3 = new Product(3, "testProduct3", Color.GREEN, BigDecimal.ONE);
+        testProducts = Arrays.asList(
+                new Product(1, "testProduct1", Color.BLACK, BigDecimal.ONE),
+                new Product(2, "testProduct2", Color.BLACK, BigDecimal.TEN),
+                new Product(3, "testProduct3", Color.GREEN, BigDecimal.ONE)
+        );
 
         inMock = mock(Input.class);
         outMock = mock(Output.class);
         loggerMock = mock(Logger.class);
 
-        initValidMockBehavior();
-    }
-
-    private void initValidMockBehavior() throws ObtainFailedException {
-        when(inMock.obtainProducts()).thenReturn(Arrays.asList(testProduct1, testProduct2, testProduct3));
-
-    }
-
-    private Controller createControllerWithMocks() {
-        return new Controller(inMock, outMock, loggerMock);
+        when(inMock.obtainProducts()).thenReturn(testProducts);
+        controller = new Controller(inMock, outMock, loggerMock);
     }
 
     @Test
@@ -81,8 +78,6 @@ public class ControllerTest {
     @Test
     @Ignore
     public void testSelectWithNullFilter() throws Exception {
-        Controller controller = createControllerWithMocks();
-
         verifyException(() -> controller.select(null));
         assertThat((Exception) caughtException())
                 .isInstanceOf(IllegalArgumentException.class);
@@ -90,17 +85,15 @@ public class ControllerTest {
 
     @Test
     public void testSelectProductsByFilter() {
-        Controller controller = createControllerWithMocks();
-
         controller.select(blackColorFilterStub);
 
-        verify(outMock).postSelectedProducts(Arrays.asList(testProduct1, testProduct2));
+        List<Product> expected = new ArrayList<>(testProducts);
+        expected.remove(testProducts.get(2));
+        verify(outMock).postSelectedProducts(expected);
     }
 
     @Test
     public void testSelectNoMatchFilter() {
-        Controller controller = createControllerWithMocks();
-
         controller.select(item -> false);
 
         verify(outMock).postSelectedProducts(Collections.emptyList());
@@ -108,11 +101,46 @@ public class ControllerTest {
 
     @Test
     public void testSelectAllMatchFilter() {
-        Controller controller = createControllerWithMocks();
+        controller.select(item -> true);
+
+        verify(outMock).postSelectedProducts(testProducts);
+    }
+
+    @Test
+    public void testSelectLogsSuccessMessage() {
+        controller.select(item -> true);
+
+        String expectedMessage = String.format("Successfully selected %d out of %d available products."
+                , testProducts.size(), testProducts.size());
+
+        verify(loggerMock).setLevel("INFO");
+        verify(loggerMock).log(Controller.class.getSimpleName(), expectedMessage);
+    }
+
+    @Test
+    public void testSelectLogsExceptionOnObtainFailure() throws Exception {
+        setupInputFailure();
 
         controller.select(item -> true);
 
-        verify(outMock).postSelectedProducts(Arrays.asList(testProduct1, testProduct2, testProduct3));
+        String expectedMessage = String.format("Filter procedure failed with exception: %s"
+                , ObtainFailedException.class.getName());
+
+        verify(loggerMock).setLevel("ERROR");
+        verify(loggerMock).log(Controller.class.getSimpleName(), expectedMessage);
+    }
+
+    @Test
+    public void testSelectDoNotPassDataOnObtainFailure() throws ObtainFailedException {
+        setupInputFailure();
+
+        controller.select(item -> true);
+
+        verify(outMock, never()).postSelectedProducts(anyCollection());
+    }
+
+    private void setupInputFailure() throws ObtainFailedException {
+        when(inMock.obtainProducts()).thenThrow(ObtainFailedException.class);
     }
 
 }
