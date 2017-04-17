@@ -1,5 +1,7 @@
 package cz.muni.fi.pv260.productfilter;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.googlecode.catchexception.CatchException.caughtException;
@@ -11,13 +13,28 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class AtLeastNOfFilterTest {
 
-    private Filter<Integer> filterStubEqualOne = item -> item == 1;
-    private Filter<Integer> filterStubEqualTwo = item -> item == 2;
-    private Filter<Integer> filterStubGreaterEqualOne = item -> item >= 1;
+    private Object testObject1;
+    private Object testObject2;
+
+    private Filter<Object> filterStubIsObject1 = item -> item == testObject1;
+    private Filter<Object> filterStubIsObject2 = item -> item == testObject2;
+    private Filter<Object> filterStubEqualObject1 = item -> item.equals(testObject1);
+
+    @Before
+    public void before() {
+        testObject1 = new Object();
+        testObject2 = new Object();
+    }
+
+    @After
+    public void after() {
+        testObject1 = null;
+        testObject2 = null;
+    }
 
     @Test
     public void testConstructValidArgs() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(1, filterStubIsObject1);
 
         assertThat(result).isNotNull();
     }
@@ -39,7 +56,7 @@ public class AtLeastNOfFilterTest {
     }
 
     @Test
-    public void testConstructFilterCannotSucceedNoFilters() throws Exception {
+    public void testConstructFilterNeverSucceedNoFilters() throws Exception {
         verifyException(() -> new AtLeastNOfFilter(1));
 
         assertThat((Exception) caughtException())
@@ -47,8 +64,8 @@ public class AtLeastNOfFilterTest {
     }
 
     @Test
-    public void testConstructFilterCannotSucceedWithFilter() throws Exception {
-        verifyException(() -> new AtLeastNOfFilter(2, filterStubEqualOne));
+    public void testConstructFilterNeverSucceedWithFilter() throws Exception {
+        verifyException(() -> new AtLeastNOfFilter(2, filterStubIsObject1));
 
         assertThat((Exception) caughtException())
                 .isInstanceOf(FilterNeverSucceeds.class);
@@ -56,44 +73,44 @@ public class AtLeastNOfFilterTest {
 
     @Test
     public void testPassesWithExactlyOneChildFilter() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(1, filterStubIsObject1);
 
-        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+        assertThat(result.passes(testObject1)).isTrue();
     }
 
     @Test
     public void testPassesWithExactlyNChildFilters() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(2, filterStubEqualOne, filterStubGreaterEqualOne);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(2, filterStubIsObject1, filterStubEqualObject1);
 
-        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+        assertThat(result.passes(testObject1)).isTrue();
     }
 
     @Test
     public void testPassesWithLessNValidChildFilters() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne, filterStubGreaterEqualOne);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(1, filterStubIsObject1, filterStubEqualObject1);
 
-        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+        assertThat(result.passes(testObject1)).isTrue();
     }
 
     @Test
     public void testPassesWithLessNSomeInvalidFilters() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualOne, filterStubEqualTwo);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(1, filterStubIsObject1, filterStubIsObject2);
 
-        assertThat(result.passes(Integer.valueOf(1))).isTrue();
+        assertThat(result.passes(testObject1)).isTrue();
     }
 
     @Test
     public void testFailWhenNMinusOnePass() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(2, filterStubEqualOne, filterStubEqualTwo);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(2, filterStubIsObject1, filterStubIsObject2);
 
-        assertThat(result.passes(Integer.valueOf(1))).isFalse();
+        assertThat(result.passes(testObject1)).isFalse();
     }
 
     @Test
     public void testFailWhenNoFilterPass() {
-        AtLeastNOfFilter<Integer> result = new AtLeastNOfFilter(1, filterStubEqualTwo, filterStubEqualTwo);
+        AtLeastNOfFilter<Object> result = new AtLeastNOfFilter(1, filterStubIsObject1, filterStubIsObject2);
 
-        assertThat(result.passes(Integer.valueOf(3))).isFalse();
+        assertThat(result.passes(new Object())).isFalse();
     }
 
 }
