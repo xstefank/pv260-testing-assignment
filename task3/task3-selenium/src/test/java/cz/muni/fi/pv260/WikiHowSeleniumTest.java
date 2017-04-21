@@ -13,25 +13,27 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author <a href="mailto:xstefank122@gmail.com">Martin Stefanko</a>
  */
 public class WikiHowSeleniumTest {
 
+    private static final String WIKIHOW_PAGE = "http://www.wikihow.com/";
+
     private WebDriver webDriver;
 
     @Before
     public void before() {
         webDriver = new FirefoxDriver();
-        webDriver.get("http://www.wikihow.com/");
+        webDriver.get(WIKIHOW_PAGE);
     }
 
     @After
     public void after() {
         webDriver.quit();
     }
-
 
     @Test
     public void testSeleniumSoftwareIsOnWikipedia() throws InterruptedException {
@@ -66,17 +68,15 @@ public class WikiHowSeleniumTest {
     private List<String> findAllOutboundLinks() {
 
         List<WebElement> elementList = webDriver.findElements(By.tagName("a"));
-
         elementList.addAll(webDriver.findElements(By.tagName("img")));
 
         List<String> hrefList = new ArrayList<>();
 
-        for (WebElement element : elementList) {
-            String hrefAttr = element.getAttribute("href");
-            if (hrefAttr != null && !hrefAttr.startsWith("#") && !hrefAttr.startsWith("/") && !hrefAttr.isEmpty()) {
-                hrefList.add(element.getAttribute("href"));
-            }
-        }
+        elementList.stream().map(webElement -> webElement.getAttribute("href"))
+                .filter(Objects::nonNull)
+                .filter(href -> href.startsWith("#"))
+                .filter(String::isEmpty)
+                .forEach(href -> hrefList.add(href.startsWith("/") ? WIKIHOW_PAGE + href : href));
 
         return hrefList;
     }
@@ -90,7 +90,6 @@ public class WikiHowSeleniumTest {
             connection.disconnect();
 
             return true;
-
         } catch (Exception ex) {
             return false;
         }
