@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="wikiHow_searchBar_testSearchClickedAndResultsArePresent.html">wikiHow_searchBar_testSearchClickedAndResultsArePresent</a></td></tr>
+<tr><td><a href="wikiHow_searchBar_testUnusualKeywordSearchReturnsPage404.html">wikiHow_searchBar_testUnusualKeywordSearchReturnsPage404</a></td></tr>
+<tr><td><a href="wikiHow_searchBar_testHtmlTagsAreParsedAfterSearch.html">wikiHow_searchBar_testHtmlTagsAreParsedAfterSearch</a></td></tr>
+<tr><td><a href="wikiHow_categories_testCategoryClickedAndRedirected.html">wikiHow_categories_testCategoryClickedAndRedirected</a></td></tr>
+<tr><td><a href="wikiHow_categories_testNonexistingCategoryReturnsPage404.html">wikiHow_categories_testNonexistingCategoryReturnsPage404</a></td></tr>
+<tr><td><a href="wikiHow_articleLinks_testRandomArticleClickedAndRedirected.html">wikiHow_articleLinks_testRandomArticleClickedAndRedirected</a></td></tr>
+<tr><td><a href="wikiHow_articleLinks_testWriteArticleClickedAndRedirected.html">wikiHow_articleLinks_testWriteArticleClickedAndRedirected</a></td></tr>
+<tr><td><a href="wikiHow_articleCreation_testSimilarArticlesPopupForKnownKeywords.html">wikiHow_articleCreation_testSimilarArticlesPopupForKnownKeywords</a></td></tr>
+<tr><td><a href="wikiHow_articleCreation_testWriteArticleClickedAndRedirected.html">wikiHow_articleCreation_testWriteArticleClickedAndRedirected</a></td></tr>
+<tr><td><a href="wikiHow_articleCreation_testInvalidNameResetsForm.html">wikiHow_articleCreation_testInvalidNameResetsForm</a></td></tr>
+</tbody></table>
+</body>
+</html>
