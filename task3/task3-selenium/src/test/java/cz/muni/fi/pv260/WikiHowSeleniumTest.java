@@ -68,7 +68,6 @@ public class WikiHowSeleniumTest {
     private List<String> findAllOutboundLinks() {
 
         List<WebElement> elementList = webDriver.findElements(By.tagName("a"));
-        elementList.addAll(webDriver.findElements(By.tagName("img")));
 
         List<String> hrefList = new ArrayList<>();
 
