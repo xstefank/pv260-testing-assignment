@@ -3,8 +3,8 @@
 ## 2. Attributes, Components and Capabilities
  ### Attributes
   1. Secure - working with personal data / money transactions
-  1. Dependable - mo random reservation cancellations (when customer arrives, he gets the exact room he reserved)
-  1. Accessible - should be accessible at any time in case of some problem with reservation after arriving
+  1. Responsible - no random reservation cancellations (when customer arrives, he gets the exact room he reserved)
+  1. Accessible - should be accessible at any time in case of some problem with reservation after arriving ???
   1. User-Friendly - the reservation can be completed in few steps
   1. Trustworthy - payments reach end-point hotels 
   1. AttrN
@@ -33,17 +33,17 @@
   1. Reservation
      * test that correct reservation passes
      * test that outdated reservation fails and informs customer about changes
-     * test that reservation from not registered user redirects him to registration
+     * test that reservation from unregistered user redirects him to registration ??? neccessary?
 
   1. Cancellation
      * test that cancellation passes until deadline
      * test that cancellation fails after deadline
-     * test that passed passed cancellation for paid reservation gives customer the right to ask for refundation 
+     * test that passed cancellation for paid reservation gives customer the right to ask for refundation 
 
   1. Refundation
      * test that refund request is saved into system
      * test that refund confirm transfers the correct amount to customer
-     * test that refund refuse contacts customer by email
+     * test that refund refuse contacts customer by email ???
 
   1. Payment
      * test that payment info is stored in database
@@ -59,7 +59,7 @@
      * test that search returns results for existing 
      * test that search with no results allows to search by filter  
      * test that no harm code gets processed from the search form
-  1. Appartment view
+  1. Appartment view ???
      * testN
      * testN
      * testN
@@ -98,5 +98,10 @@
      * testN
      * testN
 ## 3. Clusters of the biggest risks
-  * ClusterN
-  * ClusterN...
+  1. ClusterN
+  1. ClusterN...
+  1. ClusterN...
+  1. ClusterN...
+  1. ClusterN...
+  1. ClusterN...
+
