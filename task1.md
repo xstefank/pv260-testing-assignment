@@ -24,3 +24,7 @@
 ### XSS - Cross-site Scripting
 * HTML code is not escaped http://goalsec.com/exercise_2017/index.php?firstname=%3Ch1%3EHello%3C/h1%3E&lastname=%3Ch2%3EWorld%3C/h2%3E
 * javascript code is not escaped http://goalsec.com/exercise_2017/index.php?firstname=%3Cscript%3Ealert(%22Hello%20World%22);&lastname=%3C/script%3E
+# Other mitigation methods
+* Cross-Site request forgery
+* SQL Injection
+* Stressing - how the app responds when dealing with many users
