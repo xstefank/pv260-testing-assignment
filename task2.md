@@ -4,7 +4,7 @@
  ### Attributes
   1. Secure - working with personal data / money transactions
   1. Reliable - no random reservation cancellations (when customer arrives, he gets the exact room he reserved)
-  1. Available - should be available at any time in case of some problem with reservation after arriving ???
+  1. Available - should be available at any time in case of some problem with reservation after arriving
   1. Usablity / Transparency - simple reservation which is transparent for the user
   1. Credibility - payments reach end-point hotels 
   1. Stability - any failure of the system cannot influence booked reservations
@@ -33,7 +33,7 @@
   1. Secure Reservation
      * test that correct reservation passes
      * test that outdated reservation fails and informs customer about changes
-     * test that reservation from unregistered user redirects him to registration ??? neccessary?
+     * test that reservation from unregistered user redirects him to registration
 
   1. Secure Cancellation
      * test that cancellation passes until deadline
@@ -43,7 +43,7 @@
   1. Secure Refundation
      * test that refund request is saved into system
      * test that refund confirm transfers the correct amount to customer
-     * test that refund refuse contacts customer by email ???
+     * test that after refund refusal system notifies customer by email
 
   1. Secure Payment
      * test that payment info is stored in database
@@ -59,11 +59,11 @@
      * test that search returns results for existing 
      * test that search with no results allows to search by filter  
      * test that no harm code gets processed from the search form
-  1. Appartment view ???
+  1. Display for the appartment - photos / virtual walk
      * testN
      * testN
      * testN
-  1. Appartment image gallery
+  1. Hotel image gallery - common areas
      * testN
      * testN
      * testN
@@ -98,10 +98,29 @@
      * testN
      * testN
 ## 3. Clusters of the biggest risks
-  1. Reservation not adhered from the hotel side
-  1. Reservation not propagated to the hotel
-  1. Unability to locate hotels in location - potential loss of customers
-  1. Internal payment errors - user pays, reservation successful but hotel won't receive payment
+  1. Reservation 
+    * not adhered from the hotel side
+    * not propagated to the hotel
+    2. Secure reservation
+    2. Stable reservation
+    2. Transparent reservation
+    2. Reliable reservation
+    2. Credible reservation
+  1. Unability to locate hotels in area
+    * potential loss of customers
+    2. Reliable hotel search
+    2. Extensible search
+    2. Extensible filtering
+    2. Available search
+    2. Stable search - same / similar results for same queries?
+  1. Internal payment errors 
+    * user pays, reservation is successful but the hotel won't receive payment
+    2. Secure paymant
+    2. Trasnparent payment
+    2. Credible payment
+    2. Stable payment
+    2. Reliable payment
+  1. ClusterN...
   1. ClusterN...
   1. ClusterN...
 
