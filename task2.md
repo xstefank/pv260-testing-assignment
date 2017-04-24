@@ -99,27 +99,27 @@
      * testN
 ## 3. Clusters of the biggest risks
   1. Reservation 
-    * not adhered from the hotel side
-    * not propagated to the hotel
-    2. Secure reservation
-    2. Stable reservation
-    2. Transparent reservation
-    2. Reliable reservation
-    2. Credible reservation
+      * not adhered from the hotel side
+      * not propagated to the hotel
+      1. Secure reservation
+      1. Stable reservation
+      1. Transparent reservation
+      1. Reliable reservation
+      1. Credible reservation
   1. Unability to locate hotels in area
-    * potential loss of customers
-    2. Reliable hotel search
-    2. Extensible search
-    2. Extensible filtering
-    2. Available search
-    2. Stable search - same / similar results for same queries?
+      * potential loss of customers
+      1. Reliable hotel search
+      1. Extensible search
+      1. Extensible filtering
+      1. Available search
+      1. Stable search - same / similar results for same queries?
   1. Internal payment errors 
-    * user pays, reservation is successful but the hotel won't receive payment
-    2. Secure paymant
-    2. Trasnparent payment
-    2. Credible payment
-    2. Stable payment
-    2. Reliable payment
+      * user pays, reservation is successful but the hotel won't receive payment
+      1. Secure paymant
+      1. Trasnparent payment
+      1. Credible payment
+      1. Stable payment
+      1. Reliable payment
   1. ClusterN...
   1. ClusterN...
   1. ClusterN...
