@@ -16,15 +16,15 @@
   1. Cancellation & cancellation policy
   1. Search
   1. Hotel rating - Customer reviews
-  1. Internal administration ???
+  1. Hotel & property policies
   1. Call center
   1. Refund system
   1. Error logging
   1. Suggestions system
   1. Filtering
   1. Favourites
-  1. ComponentN
-  1. ComponentN
+  1. top destinations
+  1. Subscriptions
 ### Capabilities
   1. Secure Registration
      * test that valid and unique registration passes
@@ -106,7 +106,7 @@
       1. Transparent reservation
       1. Reliable reservation
       1. Credible reservation
-  1. Unability to locate hotels in area
+  1. Unability to locate hotels in the area
       * potential loss of customers
       1. Reliable hotel search
       1. Extensible search
@@ -120,7 +120,12 @@
       1. Credible payment
       1. Stable payment
       1. Reliable payment
-  1. ClusterN...
+  1. Data loss / theft
+      1. Secure payment
+      1. Secure registration
+      1. Secure data transfer (e.g. to the hotels)
+      1. Secure subscription
+      1. Secure data storing
   1. ClusterN...
   1. ClusterN...
 
