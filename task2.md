@@ -47,10 +47,10 @@
 
   1. Secure Payment
      * test that payment info is stored in database
-     * testN
-     * testN
+     * test that payment amount is double-checked on server-side
+     * test that payment modules are accessible (paypal etc.)
 
-  1. Secure??? Customer review
+  1. Secure Customer review
      * test that no harm code gets processed from the review form
      * test that valid review passes
      * test that invalid review informs customer about the errors
@@ -59,44 +59,45 @@
      * test that search returns results for existing 
      * test that search with no results allows to search by filter  
      * test that no harm code gets processed from the search form
+ 
   1. Display for the appartment - photos / virtual walk
-     * testN
-     * testN
-     * testN
+     * test that gallery can be opened
+     * test that image slider reacts to swipe events (for mobile devices)
+     * test that gallery administration tool can add/remove photos
+  
   1. Hotel image gallery - common areas
-     * testN
-     * testN
-     * testN
-
+     * same as appartment photos
+  
   1. Reliable and credible/transparent reservation for the user
-     * testN
-     * testN
-     * testN
+     * test that valid registration proceeds
+     * test that invalid registration informs about the errors
+     * test that no harm code gets processed or saved to database
 
   1. Extensible reservation
-     * testN
-     * testN
-     * testN
+     * test that reservation can be extended by partial payment
+     * test that no more than one extension can be used
+     * test that cancellation of extended reservation allows to refund the right amount of money
 
   1. Transparent refund system
-     * testN
-     * testN
-     * testN
+     * test that refund button is shown in profile after cancellation of paid reservation
+     * test that refund request shows status in profile
+     * test that refund response shows status in profile
 
   1. Stable cancellation
-     * testN
-     * testN
-     * testN
+     * test that customer can cancel reservation freely before payment
+     * test that cancelled reservation enables other customers to make the same reservation
+     * test that cancellation after payment navigates user to refund page
 
   1. Transparent and credible payment
-     * testN
-     * testN
-     * testN
+     * test that payment can be done by one-click functionality for acocunts with payment options filled
+     * test that status is shown in profile after payment
+     * test that status is shown after payment confirmation
 
   1. Extensible suggestion system
-     * testN
-     * testN
-     * testN
+     * test that suggestion button redirects user to suggestions page
+     * test that search with no results shows suggestions according to profile and interests / favourites
+     * test that search with no results allows to further filter received suggestions
+     
 ## 3. Clusters of the biggest risks
   1. Reservation 
       * not adhered from the hotel side
@@ -126,6 +127,18 @@
       1. Secure data transfer (e.g. to the hotels)
       1. Secure subscription
       1. Secure data storing
-  1. ClusterN...
-  1. ClusterN...
+  1. Hotel partners
+      * there are good and bad ones
+      1. Transparent customer reviews
+      1. Detailed hotel information
+      1. Responsive photo gallery
+      1. Accessible contact information
+      1. Our own recommendations
+  1. Competition
+      * Other booking systems - we need to be better
+      1. Flight suggestion system
+      1. Hotel-Customer communication system
+      1. Nearby attractions / destinations (culture) system
+      1. 360 view - either hotel / appartment gallery or close range streetview
+      1. Weather forecast
 
