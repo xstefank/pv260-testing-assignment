@@ -3,6 +3,7 @@ package cz.muni.fi.pv260.additional;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,8 @@ import java.util.Objects;
 /**
  * @author <a href="mailto:xstefank122@gmail.com">Martin Stefanko</a>
  */
-public class WikiHowSeleniumTest {
+@Ignore
+public class WikiHowSeleniumTestingTest {
 
     private static final String WIKIHOW_PAGE = "http://www.wikihow.com/";
 
