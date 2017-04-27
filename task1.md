@@ -1,8 +1,5 @@
-# Task 1 - Test the buggy application - http://goalsec.com/exercise_2017/
-
-### This is working copy of the actual submission
-### TODO - remeber to convert to PDF before actual submit
-
+# Task 1 - Test the buggy application
+- http://goalsec.com/exercise_2017/
 # Bug list
 ## General
 ### Credentials
@@ -11,7 +8,7 @@
 * strange commented line - `<!--Argh!!! What am I doing???!!!!-->`
 * not valid behavior for unicode characters:
   ** č, ď, ľ, ĺ.. -> & (special characters are transferred to UTF-8 key-codes which usually begin with '&#')
-* no checking for whitespaces in front of name and last name - results in credentials not being shown 
+* no checking for whitespaces in front of name and last name - results in credentials not being shown
 * not sure - from time to time - not the same results for the same inputs
 ### Input string
 * input - `&#72;&#101;&#108;&#108;&#111;` is interpreted and results into "Hello"
