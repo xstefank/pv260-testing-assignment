@@ -1,4 +1,4 @@
-package cz.muni.fi.pv260;
+package cz.muni.fi.pv260.additional;
 
 import org.junit.After;
 import org.junit.Assert;
