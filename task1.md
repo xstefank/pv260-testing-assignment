@@ -5,16 +5,16 @@
 
 # Bug list
 ## General
-### credentials
+### Credentials
 * typo - "You" -> "Your"
 * not sure - credentials are not capitalized
-* strange commented line - <!--Argh!!! What am I doing???!!!!-->
+* strange commented line - `<!--Argh!!! What am I doing???!!!!-->`
 * not valid behavior for unicode characters:
   ** č, ď, ľ, ĺ.. -> & (special characters are transferred to UTF-8 key-codes which usually begin with '&#')
 * no checking for whitespaces in front of name and last name - results in credentials not being shown 
 * not sure - from time to time - not the same results for the same inputs
-### Name string
-* input - &#72;&#101;&#108;&#108;&#111; -> Hello
+### Input string
+* input - `&#72;&#101;&#108;&#108;&#111;` is interpreted and results into "Hello"
 ## Standards
 ### HTML5
 * using unsupported HTML5 property "align" in h1 tag
